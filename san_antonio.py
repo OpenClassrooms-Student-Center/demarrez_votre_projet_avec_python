@@ -33,6 +33,12 @@ def random_item_in(object_list):
     rand_numb = random.randint(0, len(object_list))
     return object_list[rand_numb]
 
+# Return a random value from a json file
+def random_value(source_path, key):
+    all_values = read_values_from_json(source_path, key)
+    clean_values = clean_strings(all_values)
+    return random_item_in(clean_values)
+
 
 #####################
 ###### QUOTES #######
@@ -41,9 +47,7 @@ def random_item_in(object_list):
 # Gather quotes from San Antonio
 
 def random_quote():
-    json_quotes = read_values_from_json('s_a.json', 'quote')
-    quotes = clean_strings(json_quotes)
-    return random_item_in(quotes)
+    return random_value('s_a.json', 'quote')
 
 ######################
 #### CHARACTERS ######
@@ -52,9 +56,7 @@ def random_quote():
 # Gather characters from Wikipedia
 
 def random_character():
-    json_characters = read_values_from_json('characters.json', 'character')
-    characters = clean_strings(json_characters)
-    return random_item_in(characters)
+    return random_value('characters.json', 'character')
 
 
 ######################
