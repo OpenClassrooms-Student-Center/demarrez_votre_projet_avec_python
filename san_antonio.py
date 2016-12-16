@@ -33,6 +33,8 @@ def random_item_in(list):
 ###### QUOTES #######
 #####################
 
+# Gather quotes from San Antonio
+
 def random_quote():
     json_quotes = open_json('s_a.json')
     quotes = []
@@ -51,9 +53,6 @@ def random_character():
     store_in_list(json_characters, characters, 'character')
     return random_item_in(characters) 
 
-######################
-###### SENTENCE ######
-######################
 
 ######################
 #### INTERACTION ######
