@@ -63,25 +63,23 @@ def random_character():
 
 # Print a random sentence.
 
-def random_sentence():
+def print_random_sentence():
     rand_quote = random_quote()
     rand_character = random_character()
     print(">>>> {} a dit : {}".format(rand_character, rand_quote))
 
-def interaction():
-    message = ('Would you like another true quote? Type [enter]. '
-               'To exit, type [B]. To launch the scrapper again, type [C]')
-    choice = input(message).upper()
-    if choice == 'B':
-        quit()
-    elif choice == 'C':
-        # parse('san_antonio_scrapper.py', 's_a.json')
-        # parse('characters_scrapper.py', 'characters.json')
-        pass
-    else:
-        random_sentence()
-        interaction()
+def main_loop():
+    while True:
+        print_random_sentence()
+        message = ('Would you like another true quote? Type [enter]. '
+                   'To exit, type [B]. To launch the scrapper again, type [C]')
+        choice = input(message).upper()
+        if choice == 'B':
+            break
+        elif choice == 'C':
+            # run_scraper('san_antonio_scrapper.py', 's_a.json')
+            # run_scraper('characters_scrapper.py', 'characters.json')
+            pass
 
 if __name__ == '__main__':
-    random_sentence()
-    interaction()
+    main_loop()
