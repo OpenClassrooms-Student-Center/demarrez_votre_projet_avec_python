@@ -1,4 +1,4 @@
-import subprocess
+# import subprocess
 import json
 import random
 
@@ -9,8 +9,8 @@ import random
 #     subprocess.run(["scrapy", "runspider", scrapper_file, "-o", output_file])
 
 # Give a Json file and return a Dictionary
-def open_json(file):
-    with open(file) as f:
+def open_json(path):
+    with open(path) as f:
         data = json.load(f)
         return data
 
@@ -19,14 +19,14 @@ def store_in_list(json_input, list_output, key):
     # Store quotes on a list. Create an empty list and add each sentence one by one.
     for sentence in json_input:
         # Clean quotes from whitespace and so on
-        s = sentence[key].strip()
+        clean_sentence = sentence[key].strip()
         # don't use extend as it adds each letter one by one!
-        list_output.append(s)
+        list_output.append(clean_sentence)
 
 # Return a random item in a list
-def random_item_in(list):
-    rand_numb = random.randint(0, len(list))
-    return list[rand_numb]  
+def random_item_in(object_list):
+    rand_numb = random.randint(0, len(object_list))
+    return object_list[rand_numb]
 
 
 #####################
@@ -39,7 +39,7 @@ def random_quote():
     json_quotes = open_json('s_a.json')
     quotes = []
     store_in_list(json_quotes, quotes, 'quote')
-    return random_item_in(quotes) 
+    return random_item_in(quotes)
 
 ######################
 #### CHARACTERS ######
@@ -51,7 +51,7 @@ def random_character():
     json_characters = open_json('characters.json')
     characters = []
     store_in_list(json_characters, characters, 'character')
-    return random_item_in(characters) 
+    return random_item_in(characters)
 
 
 ######################
@@ -70,8 +70,9 @@ def interaction():
     if choice == 'B':
         quit()
     elif choice == 'C':
-        parse('san_antonio_scrapper.py', 's_a.json')
-        parse('characters_scrapper.py', 'characters.json')
+        # parse('san_antonio_scrapper.py', 's_a.json')
+        # parse('characters_scrapper.py', 'characters.json')
+        pass
     else:
         random_sentence()
         interaction()
