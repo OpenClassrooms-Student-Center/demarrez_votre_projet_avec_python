@@ -17,7 +17,6 @@ class BlogSpider(scrapy.Spider):
                 next_page_url = next_page[0]
                 if index == (len(next_pages) - 1):
                     next_page = False
-        
+
         if next_page:
-           yield scrapy.Request(response.urljoin(next_page_url), callback=self.parse)
-#EOF
+            yield scrapy.Request(response.urljoin(next_page_url), callback=self.parse)
