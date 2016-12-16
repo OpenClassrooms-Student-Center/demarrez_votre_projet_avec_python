@@ -1,0 +1,11 @@
+#!/Users/celinems/sites/oc/01_demarrer_avec_python/env/bin/python3.5
+
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from twisted.scripts.twistd import run
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(run())
