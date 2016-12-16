@@ -9,19 +9,24 @@ import random
 #     subprocess.run(["scrapy", "runspider", scrapper_file, "-o", output_file])
 
 # Give a Json file and return a Dictionary
-def open_json(path):
+def read_values_from_json(path, key):
+    values = []
     with open(path) as f:
         data = json.load(f)
-        return data
+        for entry in data:
+            values.append(entry[key])
+        return values
 
 # Give a json and return a list
-def store_in_list(json_input, list_output, key):
+def clean_strings(sentences):
+    cleaned = []
     # Store quotes on a list. Create an empty list and add each sentence one by one.
-    for sentence in json_input:
+    for sentence in sentences:
         # Clean quotes from whitespace and so on
-        clean_sentence = sentence[key].strip()
+        clean_sentence = sentence.strip()
         # don't use extend as it adds each letter one by one!
-        list_output.append(clean_sentence)
+        cleaned.append(clean_sentence)
+    return cleaned
 
 # Return a random item in a list
 def random_item_in(object_list):
@@ -36,9 +41,8 @@ def random_item_in(object_list):
 # Gather quotes from San Antonio
 
 def random_quote():
-    json_quotes = open_json('s_a.json')
-    quotes = []
-    store_in_list(json_quotes, quotes, 'quote')
+    json_quotes = read_values_from_json('s_a.json', 'quote')
+    quotes = clean_strings(json_quotes)
     return random_item_in(quotes)
 
 ######################
@@ -48,9 +52,8 @@ def random_quote():
 # Gather characters from Wikipedia
 
 def random_character():
-    json_characters = open_json('characters.json')
-    characters = []
-    store_in_list(json_characters, characters, 'character')
+    json_characters = read_values_from_json('characters.json', 'character')
+    characters = clean_strings(json_characters)
     return random_item_in(characters)
 
 
@@ -66,7 +69,9 @@ def random_sentence():
     print(">>>> {} a dit : {}".format(rand_character, rand_quote))
 
 def interaction():
-    choice = input('Would you like another true quote? Type [enter] To exit, type [B]. To launch the scrapper again, type [C]').upper()
+    message = ('Would you like another true quote? Type [enter]. '
+               'To exit, type [B]. To launch the scrapper again, type [C]')
+    choice = input(message).upper()
     if choice == 'B':
         quit()
     elif choice == 'C':
