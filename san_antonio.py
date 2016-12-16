@@ -4,9 +4,9 @@ import random
 
 # Parse a page using Scrapy
 # https://docs.python.org/3/library/subprocess.html
-def parse(scrapper_file, output_file):
-    subprocess.run(["rm", "-rf", output_file])
-    subprocess.run(["scrapy", "runspider", scrapper_file, "-o", output_file])
+# def parse(scrapper_file, output_file):
+#     subprocess.run(["rm", "-rf", output_file])
+#     subprocess.run(["scrapy", "runspider", scrapper_file, "-o", output_file])
 
 # Give a Json file and return a Dictionary
 def open_json(file):
@@ -25,7 +25,7 @@ def store_in_list(json_input, list_output, key):
 
 # Return a random item in a list
 def random_item_in(list):
-    rand_numb = random.randint(1, len(list))
+    rand_numb = random.randint(0, len(list))
     return list[rand_numb]  
 
 
