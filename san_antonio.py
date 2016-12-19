@@ -1,12 +1,5 @@
-# import subprocess
 import json
 import random
-
-# Parse a page using Scrapy
-# https://docs.python.org/3/library/subprocess.html
-# def parse(scrapper_file, output_file):
-#     subprocess.run(["rm", "-rf", output_file])
-#     subprocess.run(["scrapy", "runspider", scrapper_file, "-o", output_file])
 
 # Give a Json file and return a Dictionary
 def read_values_from_json(path, key):
@@ -74,14 +67,10 @@ def main_loop():
     while True:
         print_random_sentence()
         message = ('Would you like another true quote? Type [enter]. '
-                   'To exit, type [B]. To launch the scrapper again, type [C]')
+                   'To exit, type [B].')
         choice = input(message).upper()
         if choice == 'B':
             break
-        elif choice == 'C':
-            # run_scraper('san_antonio_scrapper.py', 's_a.json')
-            # run_scraper('characters_scrapper.py', 'characters.json')
-            pass
 
 if __name__ == '__main__':
     main_loop()
