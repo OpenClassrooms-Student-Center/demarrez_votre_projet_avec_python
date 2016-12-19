@@ -1,5 +1,12 @@
-Move the use of scrapy here.
+# Démarrer avec Python
 
-pip install scrapy
+## Installation 
 
-- scraper and not scrapper!
+Installation des dépendances dans un environnement virtuel :
+
+    virtualenv venv && source venv/bin/activate
+    pip install -r requirements.txt
+
+## TODO
+
+Renommer `scrapper` en `scraper` !

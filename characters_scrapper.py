@@ -1,5 +1,4 @@
 import scrapy
-from scrapy.selector import Selector
 
 class BlogSpider(scrapy.Spider):
     name = 'characterspider'

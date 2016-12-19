@@ -1,4 +1,4 @@
-import subprocess
+# import subprocess
 import json
 import random
 
@@ -9,24 +9,35 @@ import random
 #     subprocess.run(["scrapy", "runspider", scrapper_file, "-o", output_file])
 
 # Give a Json file and return a Dictionary
-def open_json(file):
-    with open(file) as f:
+def read_values_from_json(path, key):
+    values = []
+    with open(path) as f:
         data = json.load(f)
-        return data
+        for entry in data:
+            values.append(entry[key])
+        return values
 
 # Give a json and return a list
-def store_in_list(json_input, list_output, key):
+def clean_strings(sentences):
+    cleaned = []
     # Store quotes on a list. Create an empty list and add each sentence one by one.
-    for sentence in json_input:
+    for sentence in sentences:
         # Clean quotes from whitespace and so on
-        s = sentence[key].strip()
+        clean_sentence = sentence.strip()
         # don't use extend as it adds each letter one by one!
-        list_output.append(s)
+        cleaned.append(clean_sentence)
+    return cleaned
 
 # Return a random item in a list
-def random_item_in(list):
-    rand_numb = random.randint(0, len(list))
-    return list[rand_numb]  
+def random_item_in(object_list):
+    rand_numb = random.randint(0, len(object_list))
+    return object_list[rand_numb]
+
+# Return a random value from a json file
+def random_value(source_path, key):
+    all_values = read_values_from_json(source_path, key)
+    clean_values = clean_strings(all_values)
+    return random_item_in(clean_values)
 
 
 #####################
@@ -36,10 +47,7 @@ def random_item_in(list):
 # Gather quotes from San Antonio
 
 def random_quote():
-    json_quotes = open_json('s_a.json')
-    quotes = []
-    store_in_list(json_quotes, quotes, 'quote')
-    return random_item_in(quotes) 
+    return random_value('s_a.json', 'quote')
 
 ######################
 #### CHARACTERS ######
@@ -48,10 +56,7 @@ def random_quote():
 # Gather characters from Wikipedia
 
 def random_character():
-    json_characters = open_json('characters.json')
-    characters = []
-    store_in_list(json_characters, characters, 'character')
-    return random_item_in(characters) 
+    return random_value('characters.json', 'character')
 
 
 ######################
@@ -60,22 +65,23 @@ def random_character():
 
 # Print a random sentence.
 
-def random_sentence():
+def print_random_sentence():
     rand_quote = random_quote()
     rand_character = random_character()
     print(">>>> {} a dit : {}".format(rand_character, rand_quote))
 
-def interaction():
-    choice = input('Would you like another true quote? Type [enter] To exit, type [B]. To launch the scrapper again, type [C]').upper()
-    if choice == 'B':
-        quit()
-    elif choice == 'C':
-        parse('san_antonio_scrapper.py', 's_a.json')
-        parse('characters_scrapper.py', 'characters.json')
-    else:
-        random_sentence()
-        interaction()
+def main_loop():
+    while True:
+        print_random_sentence()
+        message = ('Would you like another true quote? Type [enter]. '
+                   'To exit, type [B]. To launch the scrapper again, type [C]')
+        choice = input(message).upper()
+        if choice == 'B':
+            break
+        elif choice == 'C':
+            # run_scraper('san_antonio_scrapper.py', 's_a.json')
+            # run_scraper('characters_scrapper.py', 'characters.json')
+            pass
 
 if __name__ == '__main__':
-    random_sentence()
-    interaction()
+    main_loop()
