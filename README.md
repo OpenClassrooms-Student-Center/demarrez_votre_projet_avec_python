@@ -21,6 +21,6 @@ Lancer le scraper :
 
 Exemple avec les citations de San Antonio :
     rm -rf s_a.json
-    scrapy runspider san_antonio_scraper.py -o s_a.json
+    scrapy runspider san_antonio_scraper.py -o quotes.json
 
 Une question, une interrogation ? Ecris-moi ! => http://www.c-m-s.co/fr/contact

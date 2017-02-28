@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 import json
 import random
 
-# Give a Json file and return a Dictionary
+# Give a Json file and return a List
 def read_values_from_json(path, key):
     values = []
     with open(path) as f:
@@ -40,7 +41,7 @@ def random_value(source_path, key):
 # Gather quotes from San Antonio
 
 def random_quote():
-    return random_value('s_a.json', 'quote')
+    return random_value('quotes.json', 'quote')
 
 ######################
 #### CHARACTERS ######
@@ -71,6 +72,7 @@ def main_loop():
         choice = input(message).upper()
         if choice == 'B':
             break
+            # This will stop the loop!
 
 if __name__ == '__main__':
     main_loop()
