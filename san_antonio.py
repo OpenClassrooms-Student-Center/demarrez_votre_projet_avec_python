@@ -24,7 +24,7 @@ def clean_strings(sentences):
 
 # Return a random item in a list
 def random_item_in(object_list):
-    rand_numb = random.randint(0, len(object_list))
+    rand_numb = random.randint(0, len(object_list) - 1)
     return object_list[rand_numb]
 
 # Return a random value from a json file
@@ -67,8 +67,8 @@ def print_random_sentence():
 def main_loop():
     while True:
         print_random_sentence()
-        message = ('Would you like another true quote? Type [enter]. '
-                   'To exit, type [B].')
+        message = ('Voulez-vous voir une autre citation ? '
+                   'Pour sortir du programme, tapez [B].')
         choice = input(message).upper()
         if choice == 'B':
             break
