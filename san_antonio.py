@@ -1,4 +1,5 @@
 # -*- coding: utf8 -*-
+import random
 
 quotes = [
     "Ecoutez-moi, Monsieur Shakespeare, nous avons beau être ou ne pas être, nous sommes !",
@@ -27,8 +28,8 @@ def get_random_quote():
     pass
 
 def get_random_item_in(my_list):
-    # TODO: get a random number
-    item = my_list[0] # get a quote from a list
+    rand_numb = random.randint(0, len(my_list) - 1)
+    item = my_list[rand_numb] # get a quote from a list
     return item # return the item
 
 # Programm
