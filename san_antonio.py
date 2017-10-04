@@ -20,13 +20,13 @@ def capitalize(quotes):
     for quote in quotes:
         quote.capitalize()
 
-def show_random_quote():
+def get_random_quote():
     # get a random number
     # get a quote from an array
     # show the quote in the interpreter
     pass
 
-def show_random_item_in(my_list):
+def get_random_item_in(my_list):
     # get a random number
     item = my_list[0] # get a quote from a list
     return item # return the item
@@ -34,7 +34,7 @@ def show_random_item_in(my_list):
 user_answer = "A"
 
 while user_answer != "B":
-    print(show_random_item(quotes))
+    print(get_random_item_in(quotes))
 
 # if user_answer == "B":
 #     pass
